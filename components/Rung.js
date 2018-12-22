@@ -37,7 +37,7 @@ export default class Rung extends Component {
 }
 const style = StyleSheet.create({
   margin: {
-    marginVertical: 2
+    margin: 2
   }
 });
 
