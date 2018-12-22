@@ -11,6 +11,7 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import Rung from '../components/Rung';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -21,18 +22,35 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          <Rung number="9"/>
+          <Rung number="8.5"/>
+          <Rung number="8"/>
+          <Rung number="7.5"/>
+          <Rung number="7"/>
+          <Rung number="6.5"/>
+          <Rung number="6"/>
+          <Rung number="5.5"/>
+          <Rung number="5"/>
+          <Rung number="4.5"/>
+          <Rung number="4"/>
+          <Rung number="3.5"/>
+          <Rung number="3"/>
+          <Rung number="2.5"/>
+          <Rung number="2"/>
+          <Rung number="1.5"/>
+          <Rung number="1"/>
           <View style={styles.welcomeContainer}>
-            <Image
+            {/* <Image
               source={
                 __DEV__
                   ? require('../assets/images/robot-dev.png')
                   : require('../assets/images/robot-prod.png')
               }
               style={styles.welcomeImage}
-            />
+            /> */}
           </View>
 
-          <View style={styles.getStartedContainer}>
+          {/* <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
             <Text style={styles.getStartedText}>Get started by opening</Text>
@@ -44,22 +62,22 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.getStartedText}>
               Change this text and your app will automatically reload.
             </Text>
-          </View>
+          </View> */}
 
-          <View style={styles.helpContainer}>
+          {/* <View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
+        {/* <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }
