@@ -6,7 +6,7 @@ export default class Rung extends Component {
     super(props)
 
     this.state = {
-      isActive: false
+      isSelected: false
     }
 
     this.handlePress = this.handlePress.bind(this);
@@ -14,17 +14,15 @@ export default class Rung extends Component {
 
   handlePress() {
     this.setState( state => ({
-      isActive: !state.isActive
+      isSelected: !state.isSelected
     }));
   }
 
   render() {
-    const blue = '#4286f4'
-
     return (
       <View style={[
-        this.state.isActive ? orange.base : orange.light,
-        style.margin
+        this.state.isSelected ? orange.base : orange.light,
+        style.rungs
       ]}>
         <Button
           title={this.props.number}
@@ -36,8 +34,15 @@ export default class Rung extends Component {
   }
 }
 const style = StyleSheet.create({
-  margin: {
-    margin: 2
+  rungs: {
+    margin: 5,
+    // shadowColor: 'black',
+    // shadowOffset: { height: 3, width: 3 },
+    // shadowOpacity: 0.5,
+    // shadowRadius: 3,
+    borderRadius: 5,
+    borderWidth: 0.2,
+    borderColor: '#FAE3CD'
   }
 });
 
