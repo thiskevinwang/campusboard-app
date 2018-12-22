@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Alert, TextInput, Switch, Button} from 'react-native';
+import Palette from '../constants/Palette';
 
 export default class Rung extends Component {
   constructor(props) {
@@ -42,21 +43,21 @@ const style = StyleSheet.create({
     // shadowRadius: 3,
     borderRadius: 5,
     borderWidth: 0.2,
-    borderColor: '#FAE3CD'
+    borderColor: Palette.Neutral.dark
   }
 });
 
 const orange = StyleSheet.create({
   lightest: {
-    backgroundColor: '#FDF8F3'
+    backgroundColor: Palette.Orange.lightest
   },
   light: {
-    backgroundColor: '#FAE3CD'
+    backgroundColor: Palette.Orange.light
   },
   base: {
-    backgroundColor: '#D9822B'
+    backgroundColor: Palette.Orange.base
   },
   dark: {
-    backgroundColor: '#95591E'
+    backgroundColor: Palette.Orange.dark
   }
 });
