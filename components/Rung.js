@@ -37,13 +37,14 @@ export default class Rung extends Component {
 const style = StyleSheet.create({
   rungs: {
     margin: 5,
-    // shadowColor: 'black',
-    // shadowOffset: { height: 3, width: 3 },
-    // shadowOpacity: 0.5,
-    // shadowRadius: 3,
+    shadowColor: 'black',
+    shadowOffset: { height: 3, width: 3 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
     borderRadius: 5,
-    borderWidth: 0.2,
-    borderColor: Palette.Neutral.dark
+    // borderWidth: 0.2,
+    // borderColor: Palette.Neutral.dark
+    // borderRightWidth: 5
   }
 });
 
