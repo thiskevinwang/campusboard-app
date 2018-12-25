@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "campus-app",
-    "slug": "campus-app",
+    "name": "campusboard-app",
+    "slug": "campusboard-app",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
@@ -23,9 +23,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.kevinwang.campusboard-app",
       "supportsTablet": true
     },
-    "description": "A campus-board app. ",
+    "android": {
+      "package": "com.kevinwang.campusboard_app"
+    },
+    "description": "A campusboard app. ",
     "githubUrl": "https://github.com/kevintriestocode/campus-app"
   }
 }
