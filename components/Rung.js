@@ -31,13 +31,15 @@ export default class Rung extends Component {
 
   handleLeftPress() {
     this.setState( state => ({
-      isLeftSelected: !state.isLeftSelected
+      isLeftSelected: !state.isLeftSelected,
+      isRightSelected: false
     }));
   }
 
   handleRightPress() {
     this.setState( state => ({
-      isRightSelected: !state.isRightSelected
+      isRightSelected: !state.isRightSelected,
+      isLeftSelected: false
     }));
   }
 
