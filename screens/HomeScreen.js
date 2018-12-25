@@ -145,17 +145,16 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   modalButton: {
-    backgroundColor: Palette.Blue.base,
+    flex: 1,
+    backgroundColor: Palette.Icon.selected,
 
     bottom: 0,
     right: 0,
     position: 'absolute',
 
-    width: 70,
-    height: 70,
-
-    alignItems: 'stretch',
-    flexDirection: 'column',
+    width: 55,
+    height: 55,
+    
     justifyContent: 'center',
 
     shadowColor: 'black',
@@ -163,10 +162,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
     paddingBottom: 4, //TODO: fix
-    borderWidth: 1,
-    borderColor: Palette.Blue.light,
+    // borderWidth: 1,
+    // borderColor: Palette.Blue.light,
     borderRadius: 35,
-    margin: 20,
+    marginRight: 20,
+    marginBottom: 40,
 
   },
   container: {
