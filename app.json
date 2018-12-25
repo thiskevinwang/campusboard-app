@@ -23,11 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "com.kevinwang.campusboardapp",
+      "bundleIdentifier": "com.kevinwang.campusboard-app",
       "supportsTablet": true
     },
     "android": {
-      "package": "com.kevinwang.campusboardapp"
+      "package": "com.kevinwang.campusboard_app"
     },
     "description": "A campusboard app. ",
     "githubUrl": "https://github.com/kevintriestocode/campus-app"
