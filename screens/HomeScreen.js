@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Image,
   Platform,
   ScrollView,
@@ -12,8 +13,19 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 import Rung from '../components/Rung';
+import Palette from '../constants/Palette';
 
 export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showHalfRungs: true
+    }
+
+    this.toggleHalfRungs = this.toggleHalfRungs.bind(this);
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -23,32 +35,33 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <Rung number="9"/>
-          <Rung number="8.5"/>
+          { this.state.showHalfRungs ? <Rung number="8.5" /> : null }
           <Rung number="8"/>
-          <Rung number="7.5"/>
+          { this.state.showHalfRungs ? <Rung number="7.5"/> : null }
           <Rung number="7"/>
-          <Rung number="6.5"/>
+          { this.state.showHalfRungs ? <Rung number="6.5"/> : null }
           <Rung number="6"/>
-          <Rung number="5.5"/>
+          { this.state.showHalfRungs ? <Rung number="5.5"/> : null }
           <Rung number="5"/>
-          <Rung number="4.5"/>
+          { this.state.showHalfRungs ? <Rung number="4.5"/> : null }
           <Rung number="4"/>
-          <Rung number="3.5"/>
+          { this.state.showHalfRungs ? <Rung number="3.5"/> : null }
           <Rung number="3"/>
-          <Rung number="2.5"/>
+          { this.state.showHalfRungs ? <Rung number="2.5"/> : null }
           <Rung number="2"/>
-          <Rung number="1.5"/>
+          { this.state.showHalfRungs ? <Rung number="1.5"/> : null }
           <Rung number="1"/>
-          <View style={styles.welcomeContainer}>
-            {/* <Image
+
+          {/* <View style={styles.welcomeContainer}>
+            <Image
               source={
                 __DEV__
                   ? require('../assets/images/robot-dev.png')
                   : require('../assets/images/robot-prod.png')
               }
               style={styles.welcomeImage}
-            /> */}
-          </View>
+            />
+          </View> */}
 
           {/* <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
@@ -78,8 +91,22 @@ export default class HomeScreen extends React.Component {
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
         </View> */}
+
+        <View style={styles.modalButton}>
+          <Button
+            title={this.state.showHalfRungs ? '-' : '+'}
+            color={Palette.Neutral.lightest}
+            onPress={this.toggleHalfRungs}
+          />
+        </View>
+
       </View>
     );
+  }
+  toggleHalfRungs() {
+    this.setState({
+      showHalfRungs: !this.state.showHalfRungs
+    });
   }
 
   _maybeRenderDevelopmentModeWarning() {
@@ -117,16 +144,34 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  modalButton: {
+    backgroundColor: Palette.Blue.base,
+
+    bottom: 0,
+    right: 0,
+    position: 'absolute',
+
+    width: 70,
+    height: 70,
+
+    alignItems: 'stretch',
+    flexDirection: 'column',
+    justifyContent: 'center',
+
+    shadowColor: 'black',
+    shadowOffset: { height: 3, width: 3 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    paddingBottom: 4, //TODO: fix
+    borderWidth: 1,
+    borderColor: Palette.Blue.light,
+    borderRadius: 35,
+    margin: 20,
+
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
   },
   contentContainer: {
     paddingTop: 30,
@@ -142,10 +187,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
   },
   homeScreenFilename: {
     marginVertical: 7,
