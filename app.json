@@ -30,6 +30,12 @@
       "package": "com.kevinwang.campusboard_app"
     },
     "description": "A campusboard app. ",
-    "githubUrl": "https://github.com/kevintriestocode/campus-app"
+    "githubUrl": "https://github.com/kevintriestocode/campus-app",
+    "scripts": {
+      "test": "node_modules/.bin/jest"
+    },
+    "jest": {
+      "preset": "jest-expo"
+    }
   }
 }
