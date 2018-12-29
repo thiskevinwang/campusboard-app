@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Alert, TextInput, Switch, Button} from 'react-native';
-import Palette from '../constants/Palette';
+import { } from 'react-native';
 import Rung from './Rung';
 
-export default class Board extends Component<State> {
+export default class Board extends Component {
   constructor(props) {
     super(props)
   }
