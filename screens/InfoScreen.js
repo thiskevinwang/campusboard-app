@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-import { WebBrowser } from 'expo';
+import { WebBrowser, Constants } from 'expo';
 
 export default class InfoScreen extends React.Component {
   static navigationOptions = {
@@ -15,10 +15,11 @@ export default class InfoScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.text} onPress={this._handlePress}>
-          author: KevinWang
+        <Text style={[styles.text, {fontSize: 24}]} onPress={this._handlePress}>
+          Author: Kevin Wang
         </Text>
-        {/* <ExpoLinksView /> */}
+        <Text style={styles.text}>Version: {Constants.manifest.version}</Text>
+        <Text style={styles.text}>Build: {Constants.manifest.ios.buildNumber}</Text>
       </ScrollView>
     );
   }
