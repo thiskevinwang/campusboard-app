@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
+import Timer from '../components/Timer';
 import { MonoText } from '../components/StyledText';
 import Board from '../components/Board';
 import Palette from '../constants/Palette';
@@ -40,7 +41,7 @@ export default class HomeScreen extends React.Component {
         <View style={[
             styles.modalButton,
             {backgroundColor: !this.state.wipe ?
-              Palette.Red.dark : Palette.Green.dark}
+              Palette.Icon.danger : Palette.Icon.success}
           ]}>
           <Button
             title={this.state.wipe ? 'load' : 'clear'}
@@ -48,7 +49,7 @@ export default class HomeScreen extends React.Component {
             onPress={this.clearAndLoad}
           />
         </View>
-
+        <Timer />
       </View>
     );
   }
@@ -59,28 +60,28 @@ export default class HomeScreen extends React.Component {
     })
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
+  // _maybeRenderDevelopmentModeWarning() {
+  //   if (__DEV__) {
+  //     const learnMoreButton = (
+  //       <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
+  //         Learn more
+  //       </Text>
+  //     );
+  //
+  //     return (
+  //       <Text style={styles.developmentModeText}>
+  //         Development mode is enabled, your app will be slower but you can use useful development
+  //         tools. {learnMoreButton}
+  //       </Text>
+  //     );
+  //   } else {
+  //     return (
+  //       <Text style={styles.developmentModeText}>
+  //         You are not in development mode, your app will run at full speed.
+  //       </Text>
+  //     );
+  //   }
+  // }
 }
 
 const styles = StyleSheet.create({
@@ -116,48 +117,48 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
+  // welcomeContainer: {
+  //   alignItems: 'center',
+  //   marginTop: 10,
+  //   marginBottom: 20,
+  // },
+  // tabBarInfoContainer: {
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   left: 0,
+  //   right: 0,
+  //   ...Platform.select({
+  //     ios: {
+  //       shadowColor: 'black',
+  //       shadowOffset: { height: -3 },
+  //       shadowOpacity: 0.1,
+  //       shadowRadius: 3,
+  //     },
+  //     android: {
+  //       elevation: 20,
+  //     },
+  //   }),
+  //   alignItems: 'center',
+  //   backgroundColor: '#fbfbfb',
+  //   paddingVertical: 20,
+  // },
+  // tabBarInfoText: {
+  //   fontSize: 17,
+  //   color: 'rgba(96,100,109, 1)',
+  //   textAlign: 'center',
+  // },
+  // navigationFilename: {
+  //   marginTop: 5,
+  // },
+  // helpContainer: {
+  //   marginTop: 15,
+  //   alignItems: 'center',
+  // },
+  // helpLink: {
+  //   paddingVertical: 15,
+  // },
+  // helpLinkText: {
+  //   fontSize: 14,
+  //   color: '#2e78b7',
+  // },
 });
