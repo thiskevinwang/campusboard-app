@@ -7,35 +7,94 @@ export default class Rung extends Component {
     super(props)
 
     this.state = {
-      isSelected: false
+      isSelectedCounter: 0,
+      isRightSelected: false,
+      isLeftSelected: false
     }
 
     this.handlePress = this.handlePress.bind(this);
+    this.handleLeftPress = this.handleLeftPress.bind(this);
+    this.handleRightPress = this.handleRightPress.bind(this);
   }
 
   handlePress() {
     this.setState( state => ({
-      isSelected: !state.isSelected
+      isSelectedCounter: state.isSelectedCounter + 1
     }));
+
+    if (this.state.isSelectedCounter == 2) {
+      this.setState( state => ({
+        isSelectedCounter: 0
+      }));
+    }
+  }
+
+  handleLeftPress() {
+    this.setState( state => ({
+      isLeftSelected: !state.isLeftSelected,
+      isRightSelected: false
+    }));
+  }
+
+  handleRightPress() {
+    this.setState( state => ({
+      isRightSelected: !state.isRightSelected,
+      isLeftSelected: false
+    }));
+  }
+
+  foo = (bar) => {
+    switch(bar){
+    case 1:
+      return Palette.Icon.success;
+    case 2:
+      return Palette.Icon.danger;
+    default:
+      return Palette.Orange.light;
+    }
   }
 
   render() {
     return (
       <View style={[
-        this.state.isSelected ? orange.base : orange.light,
-        style.rungs
+        {backgroundColor: this.foo(this.state.isSelectedCounter)},
+        styles.rungs
       ]}>
-        <Button
-          title={this.props.number}
-          onPress={this.handlePress}
-          color='black'
-        />
+        <View style={[
+          styles.left,
+          {backgroundColor: this.state.isLeftSelected ? Palette.Icon.selected : null}
+        ]}>
+          <Button
+            title="L"
+            onPress={this.handleLeftPress}
+            color={this.state.isLeftSelected ? Palette.Scales.Neutral.N1 : Palette.Text.muted}
+          />
+        </View>
+        <View style={styles.middle}>
+          <Button
+            title={this.props.number}
+            onPress={this.handlePress}
+            color={ this.props.number.includes('.5') ? Palette.Text.muted : Palette.Text.dark}
+          />
+        </View>
+        <View style={[
+          styles.right,
+          {backgroundColor: this.state.isRightSelected ? Palette.Icon.selected : null}
+        ]}>
+          <Button
+            title="R"
+            onPress={this.handleRightPress}
+            color={this.state.isRightSelected ? Palette.Scales.Neutral.N1 : Palette.Text.muted}
+          />
+        </View>
       </View>
     );
   }
 }
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   rungs: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     margin: 5,
     shadowColor: 'black',
     shadowOffset: { height: 3, width: 3 },
@@ -45,20 +104,22 @@ const style = StyleSheet.create({
     // borderWidth: 0.2,
     // borderColor: Palette.Neutral.dark
     // borderRightWidth: 5
-  }
-});
+  },
+  left: {
+    flex: 3,
+    borderTopLeftRadius: 5, // OHHHHH THUGLIFE!!!
+    borderBottomLeftRadius: 5
 
-const orange = StyleSheet.create({
-  lightest: {
-    backgroundColor: Palette.Orange.lightest
   },
-  light: {
-    backgroundColor: Palette.Orange.light
+  middle:{
+    flex: 1,
+    borderLeftWidth: .5,
+    borderRightWidth: .5,
+    borderColor: Palette.Border.default
   },
-  base: {
-    backgroundColor: Palette.Orange.base
-  },
-  dark: {
-    backgroundColor: Palette.Orange.dark
+  right: {
+    flex: 3,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5
   }
 });

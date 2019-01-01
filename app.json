@@ -10,9 +10,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/AppIcon.png",
+    "icon": "./assets//appicon1024.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/custom1.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -30,6 +30,6 @@
       "package": "com.kevinwang.campusboard_app"
     },
     "description": "A campusboard app. ",
-    "githubUrl": "https://github.com/kevintriestocode/campus-app"
+    "githubUrl": "https://github.com/kevintriestocode/campus-app",
   }
 }
