@@ -3,9 +3,9 @@ import { Text, ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { WebBrowser } from 'expo';
 
-export default class LinksScreen extends React.Component {
+export default class LogScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
+    title: 'Log',
   };
 
   _handlePress = () => {
@@ -15,10 +15,7 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.text} onPress={this._handlePress}>
-          author: KevinWang
-        </Text>
-        {/* <ExpoLinksView /> */}
+        <Text style={{textAlign: 'center'}}>COMING SOON!</Text>
       </ScrollView>
     );
   }
