@@ -8,7 +8,7 @@
       "ios",
       "android"
     ],
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./assets//appicon1024.png",
     "splash": {
@@ -24,7 +24,8 @@
     ],
     "ios": {
       "bundleIdentifier": "com.kevinwang.campusboard-app",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "2",
     },
     "android": {
       "package": "com.kevinwang.campusboard_app"
