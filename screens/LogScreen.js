@@ -15,7 +15,7 @@ export default class LogScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text>foo bar</Text>
+        <Text style={{textAlign: 'center'}}>COMING SOON!</Text>
       </ScrollView>
     );
   }
