@@ -25,12 +25,12 @@
     "ios": {
       "bundleIdentifier": "com.kevinwang.campusboard-app",
       "supportsTablet": true,
-      "buildNumber": "2",
+      "buildNumber": "3"
     },
     "android": {
       "package": "com.kevinwang.campusboard_app"
     },
     "description": "A campusboard app. ",
-    "githubUrl": "https://github.com/kevintriestocode/campus-app",
+    "githubUrl": "https://github.com/kevintriestocode/campus-app"
   }
 }
