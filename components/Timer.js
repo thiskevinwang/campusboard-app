@@ -1,24 +1,24 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
-  Platform
-} from "react-native";
-import Palette from "../constants/Palette";
-import { MonoText } from "./StyledText";
-import { Icon } from "expo";
+  Platform,
+} from "react-native"
+import Palette from "../constants/Palette"
+import { MonoText } from "./StyledText"
+import { Icon } from "expo"
 
 export default class Timer extends Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       ss: 0,
       mm: 0,
-      isRunning: false
-    };
+      isRunning: false,
+    }
   }
 
   componentWillMount() {}
@@ -30,47 +30,47 @@ export default class Timer extends Component {
   // }
 
   componentWillUnmount() {
-    this.timerID.clearInterval();
+    this.timerID.clearInterval()
   }
 
   tick() {
     this.setState({
-      ss: this.state.ss + 1
-    });
+      ss: this.state.ss + 1,
+    })
     if (this.state.ss == 60) {
       this.setState({
         ss: 0,
-        mm: this.state.mm + 1
-      });
+        mm: this.state.mm + 1,
+      })
     }
   }
 
   fire = () => {
     this.setState({
-      isRunning: true
-    });
-    this.timerID = setInterval(() => this.tick(), 1000);
-  };
+      isRunning: true,
+    })
+    this.timerID = setInterval(() => this.tick(), 1000)
+  }
 
   pause = () => {
     this.setState({
-      isRunning: false
-    });
-    clearInterval(this.timerID);
-  };
+      isRunning: false,
+    })
+    clearInterval(this.timerID)
+  }
 
   handlePress = () => {
-    !this.state.isRunning ? this.fire() : this.pause();
-  };
+    !this.state.isRunning ? this.fire() : this.pause()
+  }
 
   handleLongPress = () => {
     this.setState({
       ss: 0,
       mm: 0,
-      isRunning: false
-    });
-    this.pause();
-  };
+      isRunning: false,
+    })
+    this.pause()
+  }
 
   render() {
     return (
@@ -83,8 +83,8 @@ export default class Timer extends Component {
                 ? Palette.Icon.danger
                 : this.state.isRunning
                 ? Palette.Icon.success
-                : Palette.Icon.muted
-          }
+                : Palette.Icon.muted,
+          },
         ]}
         onPress={this.handlePress}
         onLongPress={this.handleLongPress}
@@ -92,7 +92,7 @@ export default class Timer extends Component {
         <Text
           style={{
             color: "white",
-            fontSize: 24
+            fontSize: 24,
           }}
         >
           <Icon.Ionicons
@@ -113,7 +113,7 @@ export default class Timer extends Component {
           {this.state.ss < 10 ? "0" + this.state.ss : this.state.ss}
         </Text>
       </TouchableOpacity>
-    );
+    )
   }
 }
 
@@ -137,6 +137,6 @@ const styles = StyleSheet.create({
 
     top: 50,
     right: 0,
-    position: "absolute"
-  }
-});
+    position: "absolute",
+  },
+})
