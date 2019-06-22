@@ -3,12 +3,9 @@
     "name": "campusboard-app",
     "slug": "campusboard-app",
     "privacy": "public",
-    "sdkVersion": "31.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "version": "1.1.1",
+    "sdkVersion": "33.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.2.1",
     "orientation": "portrait",
     "icon": "./assets//appicon1024.png",
     "splash": {
@@ -19,18 +16,16 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.kevinwang.campusboard-app",
       "supportsTablet": true,
-      "buildNumber": "3"
+      "buildNumber": "4"
     },
     "android": {
       "package": "com.kevinwang.campusboard_app"
     },
     "description": "A campusboard app. ",
-    "githubUrl": "https://github.com/kevintriestocode/campus-app"
+    "githubUrl": "https://github.com/thiskevinwang/campusboard-app"
   }
 }
