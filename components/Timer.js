@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import {
   View,
   Text,
@@ -6,115 +6,97 @@ import {
   StyleSheet,
   Platform,
 } from "react-native"
+import moment from "moment"
 import Palette from "../constants/Palette"
 import { MonoText } from "./StyledText"
 import { Icon } from "expo"
 
-export default class Timer extends Component {
-  constructor() {
-    super()
+export default function Timer(props) {
+  const [state, setState] = useState({
+    time: 0,
+    isRunning: false,
+  })
+  console.log(state.time)
 
-    this.state = {
-      ss: 0,
-      mm: 0,
-      isRunning: false,
-    }
+  let timerID = useRef()
+  useEffect(() => {
+    return () => clearInterval(timerID.current)
+  }, [])
+
+  const tick = () => {
+    setState(state => ({
+      ...state,
+      time: state.time + 1,
+    }))
   }
 
-  componentWillMount() {}
-
-  // componentDidMount() {
-  //   this.timerID = setInterval(
-  //     () => this.tick(), 1000
-  //   );
-  // }
-
-  componentWillUnmount() {
-    this.timerID.clearInterval()
-  }
-
-  tick() {
-    this.setState({
-      ss: this.state.ss + 1,
-    })
-    if (this.state.ss == 60) {
-      this.setState({
-        ss: 0,
-        mm: this.state.mm + 1,
-      })
-    }
-  }
-
-  fire = () => {
-    this.setState({
+  const fire = () => {
+    setState(state => ({
+      ...state,
       isRunning: true,
-    })
-    this.timerID = setInterval(() => this.tick(), 1000)
+    }))
+    timerID.current = setInterval(() => tick(), 1000)
   }
 
-  pause = () => {
-    this.setState({
+  const pause = () => {
+    setState(state => ({
+      ...state,
       isRunning: false,
-    })
-    clearInterval(this.timerID)
+    }))
+    clearInterval(timerID.current)
   }
 
   handlePress = () => {
-    !this.state.isRunning ? this.fire() : this.pause()
+    !state.isRunning ? fire() : pause()
   }
 
   handleLongPress = () => {
-    this.setState({
-      ss: 0,
-      mm: 0,
+    setState(state => ({
+      time: 0,
       isRunning: false,
-    })
-    this.pause()
+    }))
+    pause()
   }
 
-  render() {
-    return (
-      <TouchableOpacity
-        style={[
-          styles.timer,
-          {
-            backgroundColor:
-              (this.state.ss == 0) & !this.state.isRunning
-                ? Palette.Icon.danger
-                : this.state.isRunning
-                ? Palette.Icon.success
-                : Palette.Icon.muted,
-          },
-        ]}
-        onPress={this.handlePress}
-        onLongPress={this.handleLongPress}
+  return (
+    <TouchableOpacity
+      style={[
+        styles.timer,
+        {
+          backgroundColor:
+            (state.time == 0) & !state.isRunning
+              ? Palette.Icon.danger
+              : state.isRunning
+              ? Palette.Icon.success
+              : Palette.Icon.muted,
+        },
+      ]}
+      onPress={handlePress}
+      onLongPress={handleLongPress}
+    >
+      <Text
+        style={{
+          color: "white",
+          fontSize: 24,
+        }}
       >
-        <Text
-          style={{
-            color: "white",
-            fontSize: 24,
-          }}
-        >
-          <Icon.Ionicons
-            name={
-              this.state.isRunning
-                ? Platform.OS === "ios"
-                  ? "ios-pause"
-                  : "md-pause"
-                : Platform.OS === "ios"
-                ? "ios-play"
-                : "md-play"
-            }
-            size={24}
-            // style={{ marginBottom: 0 }}
-            color="white"
-          />{" "}
-          {this.state.mm < 10 ? "0" + this.state.mm : this.state.mm}:
-          {this.state.ss < 10 ? "0" + this.state.ss : this.state.ss}
-        </Text>
-      </TouchableOpacity>
-    )
-  }
+        <Icon.Ionicons
+          name={
+            state.isRunning
+              ? Platform.OS === "ios"
+                ? "ios-pause"
+                : "md-pause"
+              : Platform.OS === "ios"
+              ? "ios-play"
+              : "md-play"
+          }
+          size={24}
+          color="white"
+        />{" "}
+        {moment(state.time * 1000).format("mm:ss")}
+      </Text>
+    </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({
