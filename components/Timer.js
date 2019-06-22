@@ -11,40 +11,39 @@ import Palette from "../constants/Palette"
 import { MonoText } from "./StyledText"
 import { Icon } from "expo"
 
-export default function Timer(props) {
+export default function Timer() {
   const [state, setState] = useState({
     time: 0,
     isRunning: false,
   })
-  console.log(state.time)
 
   let timerID = useRef()
   useEffect(() => {
     return () => clearInterval(timerID.current)
   }, [])
 
-  const tick = () => {
+  const tick = useCallback(() => {
     setState(state => ({
       ...state,
       time: state.time + 1,
     }))
-  }
+  }, [])
 
-  const fire = () => {
+  const fire = useCallback(() => {
     setState(state => ({
       ...state,
       isRunning: true,
     }))
     timerID.current = setInterval(() => tick(), 1000)
-  }
+  }, [])
 
-  const pause = () => {
+  const pause = useCallback(() => {
     setState(state => ({
       ...state,
       isRunning: false,
     }))
     clearInterval(timerID.current)
-  }
+  }, [])
 
   handlePress = () => {
     !state.isRunning ? fire() : pause()
@@ -57,6 +56,8 @@ export default function Timer(props) {
     }))
     pause()
   }
+
+  const currentTime = moment(state.time * 1000).format("mm:ss")
 
   return (
     <TouchableOpacity
@@ -74,26 +75,26 @@ export default function Timer(props) {
       onPress={handlePress}
       onLongPress={handleLongPress}
     >
+      <Icon.Ionicons
+        name={
+          state.isRunning
+            ? Platform.OS === "ios"
+              ? "ios-pause"
+              : "md-pause"
+            : Platform.OS === "ios"
+            ? "ios-play"
+            : "md-play"
+        }
+        size={24}
+        color="white"
+      />
       <Text
         style={{
           color: "white",
           fontSize: 24,
         }}
       >
-        <Icon.Ionicons
-          name={
-            state.isRunning
-              ? Platform.OS === "ios"
-                ? "ios-pause"
-                : "md-pause"
-              : Platform.OS === "ios"
-              ? "ios-play"
-              : "md-play"
-          }
-          size={24}
-          color="white"
-        />{" "}
-        {moment(state.time * 1000).format("mm:ss")}
+        {currentTime}
       </Text>
     </TouchableOpacity>
   )
@@ -101,8 +102,7 @@ export default function Timer(props) {
 
 const styles = StyleSheet.create({
   timer: {
-    flex: 1,
-    flexDirection: "column",
+    flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
 
