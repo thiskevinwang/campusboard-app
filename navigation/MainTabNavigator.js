@@ -1,46 +1,48 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from "react"
+import { Platform } from "react-native"
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  createAppContainer,
+} from "react-navigation"
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import InfoScreen from '../screens/InfoScreen';
+import TabBarIcon from "../components/TabBarIcon"
+import HomeScreen from "../screens/HomeScreen"
+import InfoScreen from "../screens/InfoScreen"
 // import SettingsScreen from '../screens/SettingsScreen';
-import LogScreen from '../screens/LogScreen';
+import LogScreen from "../screens/LogScreen"
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-});
+})
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: "Home",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios' ? 'ios-home' : 'md-home'
-      }
+      name={Platform.OS === "ios" ? "ios-home" : "md-home"}
     />
   ),
-};
+}
 
 const InfoStack = createStackNavigator({
   Info: InfoScreen,
-});
+})
 
 InfoStack.navigationOptions = {
-  tabBarLabel: 'Info',
+  tabBarLabel: "Info",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+        Platform.OS === "ios"
+          ? `ios-information-circle${focused ? "" : "-outline"}`
+          : "md-information-circle"
       }
     />
   ),
-};
+}
 
 // const SettingsStack = createStackNavigator({
 //   Settings: SettingsScreen,
@@ -61,18 +63,20 @@ const LogStack = createStackNavigator({
 })
 
 LogStack.navigationOptions = {
-  tabBarLabel: 'Log',
+  tabBarLabel: "Log",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-calendar' : 'md-calendar'}
+      name={Platform.OS === "ios" ? "ios-calendar" : "md-calendar"}
     />
   ),
-};
+}
 
-export default createBottomTabNavigator({
-  HomeStack,
-  // SettingsStack,
-  LogStack,
-  InfoStack,
-});
+export default createAppContainer(
+  createBottomTabNavigator({
+    HomeStack,
+    // SettingsStack,
+    LogStack,
+    InfoStack,
+  })
+)
