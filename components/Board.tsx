@@ -52,7 +52,6 @@ export default function Board({ initialState }: { initialState: RungProps[] }) {
   return (
     <View style={{ flexDirection: `column-reverse` }}>
       {rungs.map((e, i) => {
-        console.log(e)
         return (
           <Rung
             handlePress={handlePress(i)}
