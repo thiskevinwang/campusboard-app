@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 import {
   Button,
   Image,
@@ -8,58 +8,68 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Alert
-} from 'react-native';
-import { WebBrowser } from 'expo';
+  Alert,
+} from "react-native"
+import { WebBrowser } from "expo"
 
-import Timer from '../components/Timer';
-import { MonoText } from '../components/StyledText';
-import Board from '../components/Board';
-import Palette from '../constants/Palette';
+import Timer from "../components/Timer"
+import { MonoText } from "../components/StyledText"
+import Board from "../components/Board"
+import Palette from "../constants/Palette"
+
+const initialState = new Array(17).fill({
+  isSelectedCounter: 0,
+  isRightSelected: false,
+  isLeftSelected: false,
+})
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      wipe: false
-    };
+      rungs: initialState,
+    }
   }
 
   static navigationOptions = {
     header: null,
-  };
+  }
+
+  reset = () => {
+    this.setState({
+      rungs: Array.from(initialState),
+    })
+  }
 
   render() {
     return (
       <View style={styles.container}>
-
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          {!this.state.wipe ? <Board /> : null}
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
+        >
+          <Board initialState={this.state.rungs} />
         </ScrollView>
 
-        <View style={[
+        <View
+          style={[
             styles.modalButton,
-            {backgroundColor: !this.state.wipe ?
-              Palette.Icon.danger : Palette.Icon.success}
-          ]}>
+            {
+              backgroundColor: Palette.Icon.danger,
+            },
+          ]}
+        >
           <Button
-            title={this.state.wipe ? 'load' : 'clear'}
+            title={"reset"}
             color={Palette.Neutral.lightest}
-            onPress={this.clearAndLoad}
+            onPress={this.reset}
           />
         </View>
         <Timer />
       </View>
-    );
+    )
   }
-
-  clearAndLoad = () => {
-    this.setState({
-      wipe: !this.state.wipe
-    })
-  }
-
   // _maybeRenderDevelopmentModeWarning() {
   //   if (__DEV__) {
   //     const learnMoreButton = (
@@ -91,14 +101,14 @@ const styles = StyleSheet.create({
 
     bottom: 0,
     right: 0,
-    position: 'absolute',
+    position: "absolute",
 
     width: 55,
     height: 55,
 
-    justifyContent: 'center',
+    justifyContent: "center",
 
-    shadowColor: 'black',
+    shadowColor: "black",
     shadowOffset: { height: 3, width: 3 },
     shadowOpacity: 0.5,
     shadowRadius: 3,
@@ -108,11 +118,10 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     marginRight: 20,
     marginBottom: 40,
-
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   contentContainer: {
     paddingTop: 30,
@@ -161,4 +170,4 @@ const styles = StyleSheet.create({
   //   fontSize: 14,
   //   color: '#2e78b7',
   // },
-});
+})
