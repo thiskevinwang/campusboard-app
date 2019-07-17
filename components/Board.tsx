@@ -6,25 +6,59 @@ interface RungProps {
   isSelectedCounter: number
   isRightSelected: boolean
   isLeftSelected: boolean
+  index: number
 }
 
 export default function Board({ initialState }: { initialState: RungProps[] }) {
-  const [rungs, setRungs] = useState(initialState)
+  const [rungs, setRungs]: [RungProps[], () => void] = useState(initialState)
+  // console.log(
+  //   "rungs",
+  //   rungs.map(e => ({ index: e.index, isSelectedCounter: e.isSelectedCounter }))
+  // )
 
   // This sets rungs if initial state is
   useEffect(() => {
     setRungs([...initialState])
   }, [initialState])
 
-  const handlePress = i => () => {
-    setRungs((rungs: RungProps[]) => {
+  const handlePress = (i: number) => () => {
+    /**
+     * Check for a previously selected rung.
+     */
+    const startRungIndex = rungs.reduce((a, c) => {
+      // console.log(c.index, ":", c.isSelectedCounter)
+
+      return a + (c.isSelectedCounter === 1 ? c.index : 0)
+    }, null)
+
+    /**
+     * Ending rung
+     */
+    const endRungIndex = rungs.reduce((a, c) => {
+      return a + (c.isSelectedCounter === 2 ? c.index : 0)
+    }, null)
+
+    setRungs(() => {
       rungs[i] = {
         ...rungs[i],
         isSelectedCounter:
-          rungs[i].isSelectedCounter + 1 === 3
+          i === startRungIndex
             ? 0
-            : rungs[i].isSelectedCounter + 1,
+            : startRungIndex && i > startRungIndex
+            ? 2
+            : 1,
       }
+
+      rungs[startRungIndex] = {
+        ...rungs[startRungIndex],
+        isSelectedCounter: i <= startRungIndex ? 0 : 1,
+      }
+
+      rungs[endRungIndex] = {
+        ...rungs[endRungIndex],
+        isSelectedCounter: 0,
+      }
+
       return [...rungs]
     })
   }

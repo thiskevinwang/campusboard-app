@@ -17,11 +17,12 @@ import { MonoText } from "../components/StyledText"
 import Board from "../components/Board"
 import Palette from "../constants/Palette"
 
-const initialState = new Array(17).fill({
+const initialState = new Array(17).fill({}).map((e, i) => ({
   isSelectedCounter: 0,
   isRightSelected: false,
   isLeftSelected: false,
-})
+  index: i,
+}))
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
