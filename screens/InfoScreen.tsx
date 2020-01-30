@@ -1,27 +1,32 @@
-import React from 'react';
-import { Text, ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
-import { WebBrowser, Constants } from 'expo';
+import React from "react"
+import { Text, ScrollView, StyleSheet } from "react-native"
+import { WebBrowser } from "expo"
+import Constants from "expo-constants"
 
 export default class InfoScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
-  };
+    title: "Links",
+  }
 
   _handlePress = () => {
-    WebBrowser.openBrowserAsync('https://thekevinwang.com');
-  };
+    WebBrowser.openBrowserAsync("https://coffeecodeclimb.com")
+  }
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text style={[styles.text, {fontSize: 24}]} onPress={this._handlePress}>
+        <Text
+          style={[styles.text, { fontSize: 24 }]}
+          onPress={this._handlePress}
+        >
           Author: Kevin Wang
         </Text>
         <Text style={styles.text}>Version: {Constants.manifest.version}</Text>
-        <Text style={styles.text}>Build: {Constants.manifest.ios.buildNumber}</Text>
+        <Text style={styles.text}>
+          Build: {Constants.manifest.ios.buildNumber}
+        </Text>
       </ScrollView>
-    );
+    )
   }
 }
 
@@ -29,9 +34,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   text: {
-    textAlign: 'center'
-  }
-});
+    textAlign: "center",
+  },
+})

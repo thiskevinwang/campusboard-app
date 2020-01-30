@@ -7,9 +7,10 @@ import {
   Platform,
 } from "react-native"
 import moment from "moment"
+import { Ionicons } from "@expo/vector-icons"
+
 import Palette from "../constants/Palette"
 import { MonoText } from "./StyledText"
-import { Icon } from "expo"
 
 export default function Timer() {
   const [state, setState] = useState({
@@ -75,7 +76,7 @@ export default function Timer() {
       onPress={handlePress}
       onLongPress={handleLongPress}
     >
-      <Icon.Ionicons
+      <Ionicons
         name={
           state.isRunning
             ? Platform.OS === "ios"
